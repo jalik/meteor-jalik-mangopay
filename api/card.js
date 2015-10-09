@@ -1,5 +1,8 @@
 MangoPaySDK.card = {
 
+    /**
+     * Types of card
+     */
     type: {
         diners: 'DINERS',
         maestro: 'MAESTRO',
@@ -19,9 +22,10 @@ MangoPaySDK.card = {
         // Cast Card to CardRegistration
         var cr = new MangoPaySDK.card.CardRegistration(obj);
 
+        // Create the card registration
         MangoPaySDK.card.createRegistration(cr, function (err, result) {
             if (err) {
-                handler(err, result);
+                handleAPIResponse(err, result);
             } else {
                 console.log('CR', result);
 
@@ -33,6 +37,7 @@ MangoPaySDK.card = {
                     cardCvx: obj.CardCvx
                 });
 
+                // Send card details
                 HTTP.post(result.CardRegistrationURL, {
                     data: {
                         data: result.PreregistrationData,
@@ -43,13 +48,14 @@ MangoPaySDK.card = {
                     }
                 }, function (err, result2) {
                     if (err) {
-                        handler(err, result2);
+                        handleAPIResponse(err, result2);
                     } else {
                         console.log('RD', result2);
 
                         var data2 = result2.data;
 
-                        MangoPayClient.put('/cardregistrations/' + result.id, {
+                        // Save registration data
+                        MangoPaySDK.card.update(result.Id, {
                             RegistrationData: data2
                         }, callback);
                     }
@@ -67,7 +73,7 @@ MangoPaySDK.card = {
         if (!(obj instanceof MangoPaySDK.card.CardRegistration)) {
             throw new Error('obj is not instance of CardRegistration');
         }
-        MangoPayClient.post('/cardregistrations', obj, callback);
+        HttpClient.post('/cardregistrations', obj, callback);
     },
 
     /**
@@ -83,7 +89,7 @@ MangoPaySDK.card = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        MangoPayClient.post('/cardregistrations/' + id, obj, callback);
+        HttpClient.post('/cardregistrations/' + id, obj, callback);
     },
 
     /**

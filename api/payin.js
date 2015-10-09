@@ -6,19 +6,19 @@ MangoPaySDK.payin = {
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.payin.BankWire) {
-            MangoPayClient.post('/payins/bankwire/direct', obj, callback);
+            HttpClient.post('/payins/bankwire/direct', obj, callback);
         }
-        else if (obj instanceof MangoPaySDK.user.DirectDebit) {
-            MangoPayClient.post('/payins/directdebit/web', obj, callback);
+        else if (obj instanceof MangoPaySDK.payin.DirectDebit) {
+            HttpClient.post('/payins/directdebit/web', obj, callback);
         }
-        else if (obj instanceof MangoPaySDK.user.PreAuthorizedAmount) {
-            MangoPayClient.post('/payins/PreAuthorized/direct', obj, callback);
+        else if (obj instanceof MangoPaySDK.payin.PreAuthorizedAmount) {
+            HttpClient.post('/payins/PreAuthorized/direct', obj, callback);
         }
-        else if (obj instanceof MangoPaySDK.user.TokenizedCard) {
-            MangoPayClient.post('/payins/card/direct', obj, callback);
+        else if (obj instanceof MangoPaySDK.payin.TokenizedCard) {
+            HttpClient.post('/payins/card/direct', obj, callback);
         }
         else {
-            throw new Error('obj is not instance of LegalUser or NaturalUser');
+            throw new Error('obj is not instance of [BankWire, DirectDebit, PreAuthorizedAmount, TokenizedCard]');
         }
     },
 
@@ -31,7 +31,7 @@ MangoPaySDK.payin = {
         if (typeof id !== 'number' && typeof id !== 'string') {
             throw new Error('id is not valid');
         }
-        MangoPayClient.get('/payins/' + id, callback);
+        HttpClient.get('/payins/' + id, callback);
     },
 
     /**
@@ -39,7 +39,7 @@ MangoPaySDK.payin = {
      * @param callback
      */
     list: function (callback) {
-        MangoPayClient.get('/payins', callback);
+        HttpClient.get('/payins', callback);
     },
 
     /**

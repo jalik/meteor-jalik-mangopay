@@ -4,6 +4,6 @@ MangoPaySDK.event = {
      * @param callback
      */
     list: function (callback) {
-        MangoPayClient.get('/events', callback);
+        HttpClient.get('/events', callback);
     }
 };

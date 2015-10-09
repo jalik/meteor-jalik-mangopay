@@ -10,15 +10,18 @@ Package.describe({
 
 Package.onUse(function (api) {
     api.versionsFrom('1.1.0.2');
-    api.use(['check', 'http', 'underscore', 'base64']);
-    api.addFiles(['mangopay.js'], 'server');
-    api.addFiles(['mangopay-card.js'], 'server');
-    api.addFiles(['mangopay-event.js'], 'server');
-    api.addFiles(['mangopay-http.js'], 'server');
-    api.addFiles(['mangopay-payin.js'], 'server');
-    api.addFiles(['mangopay-transfer.js'], 'server');
-    api.addFiles(['mangopay-user.js'], 'server');
-    api.addFiles(['mangopay-wallet.js'], 'server');
+    api.use(['base64', 'check', 'http', 'underscore']);
+    api.addFiles(['mangopay.js', 'mangopay-http.js'], 'server');
+    api.addFiles(['api/bank.js'], 'server');
+    api.addFiles(['api/card.js'], 'server');
+    api.addFiles(['api/event.js'], 'server');
+    api.addFiles(['api/hook.js'], 'server');
+    api.addFiles(['api/payin.js'], 'server');
+    api.addFiles(['api/payout.js'], 'server');
+    api.addFiles(['api/refund.js'], 'server');
+    api.addFiles(['api/transfer.js'], 'server');
+    api.addFiles(['api/user.js'], 'server');
+    api.addFiles(['api/wallet.js'], 'server');
     api.export('MangoPaySDK');
 });
 

@@ -1,4 +1,4 @@
-MangoPayClient = {
+HttpClient = {
     /**
      * Executes a GET request
      * @param path
@@ -11,7 +11,7 @@ MangoPayClient = {
         });
 
         HTTP.get(url, options, function (err, result) {
-            handler(err, result, callback);
+            handleAPIResponse(err, result, callback);
         });
     },
 
@@ -29,7 +29,7 @@ MangoPayClient = {
         });
 
         HTTP.post(url, options, function (err, result) {
-            handler(err, result, callback);
+            handleAPIResponse(err, result, callback);
         });
     },
 
@@ -47,12 +47,12 @@ MangoPayClient = {
         });
 
         HTTP.put(url, options, function (err, result) {
-            handler(err, result, callback);
+            handleAPIResponse(err, result, callback);
         });
     }
 };
 
-var handler = function (err, result, callback) {
+var handleAPIResponse = function (err, result, callback) {
     if (typeof callback === 'function') {
         if (result && result.data) {
             callback(err, result.data, result);

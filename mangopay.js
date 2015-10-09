@@ -1,6 +1,9 @@
 apiUrl = null;
 
 MangoPaySDK = {
+    /**
+     * The API mode to use (sandbox or live)
+     */
     production: false,
 
     /**

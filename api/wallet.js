@@ -8,7 +8,7 @@ MangoPaySDK.wallet = {
         if (!(obj instanceof MangoPaySDK.wallet.Wallet)) {
             throw new Error('obj is not instance of Wallet');
         }
-        MangoPayClient.post('/wallets', obj, callback);
+        HttpClient.post('/wallets', obj, callback);
     },
 
     /**
@@ -20,7 +20,7 @@ MangoPaySDK.wallet = {
         if (typeof id !== 'number' && typeof id !== 'string') {
             throw new Error('id is not valid');
         }
-        MangoPayClient.get('/wallets/' + id, callback);
+        HttpClient.get('/wallets/' + id, callback);
     },
 
     /**
@@ -32,11 +32,11 @@ MangoPaySDK.wallet = {
         if (typeof id !== 'number' && typeof id !== 'string') {
             throw new Error('id is not valid');
         }
-        MangoPayClient.get('/wallets/' + id + '/transactions', callback);
+        HttpClient.get('/wallets/' + id + '/transactions', callback);
     },
 
     /**
-     * Updates the wllet by Id
+     * Updates the wallet by Id
      * @param id
      * @param obj
      * @param callback
@@ -48,7 +48,7 @@ MangoPaySDK.wallet = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        MangoPayClient.put('/wallets/' + id, obj, callback);
+        HttpClient.put('/wallets/' + id, obj, callback);
     },
 
     /**

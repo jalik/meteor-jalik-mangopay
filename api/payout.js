@@ -1,18 +1,20 @@
-MangoPaySDK.transfer = {
+MangoPaySDK.payout = {
     /**
-     * Creates a new transfer
+     * Creates a new payout
      * @param obj
      * @param callback
      */
     create: function (obj, callback) {
-        if (!(obj instanceof MangoPaySDK.transfer.Transfer)) {
-            throw new Error('obj is not instance of Transfer');
+        if (obj instanceof MangoPaySDK.payout.Payout) {
+            HttpClient.post('/payouts/banwire', obj, callback);
         }
-        MangoPayClient.post('/transfers', obj, callback);
+        else {
+            throw new Error('obj is not instance of Payout');
+        }
     },
 
     /**
-     * Fetches the transfer by Id
+     * Fetches the payout by Id
      * @param id
      * @param callback
      */
@@ -20,22 +22,22 @@ MangoPaySDK.transfer = {
         if (typeof id !== 'number' && typeof id !== 'string') {
             throw new Error('id is not valid');
         }
-        MangoPayClient.get('/transfers/' + id, callback);
+        HttpClient.get('/payouts/' + id, callback);
     },
 
     /**
-     * A transfer
+     * A PAY-OUT
      * @param options
      * @constructor
      */
-    Transfer: function (options) {
-        this.AuthorId = null;
-        this.CreditedUserId = null;
-        this.CreditedWalletID = null;
-        this.DebitedFunds = null;
-        this.DebitedWalletID = null;
-        this.Fees = null;
+    Payout: function (options) {
         this.Tag = null;
+        this.AuthorId = null;
+        this.DebitedWalletId = null;
+        this.DebitedFunds = null;
+        this.Fees = null;
+        this.BankAccountId = null;
+        this.BankWireRef = null;
 
         _.extend(this, options);
     }
