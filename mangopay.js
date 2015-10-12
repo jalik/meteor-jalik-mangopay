@@ -14,7 +14,11 @@ MangoPaySDK = {
     authenticate: function (clientId, secret) {
         var prodUrl = 'https://api.mangopay.com/v2';
         var testUrl = 'https://api.sandbox.mangopay.com/v2';
+
+        // Set the API endpoint
         apiUrl = (MangoPaySDK.production ? prodUrl : testUrl) + '/' + clientId;
-        MangoPaySDK.credentials = 'Basic ' + new Buffer(clientId + ':' + secret).toString('base64');
+
+        // Set credentials used for authentication
+        MangoPaySDK.credentials = clientId + ':' + secret;
     }
 };

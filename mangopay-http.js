@@ -7,7 +7,7 @@ HttpClient = {
     get: function (path, callback) {
         var url = apiUrl + path;
         var options = _.extend({
-            headers: {Authorization: MangoPaySDK.credentials}
+            auth: MangoPaySDK.credentials
         });
 
         HTTP.get(url, options, function (err, result) {
@@ -24,7 +24,7 @@ HttpClient = {
     post: function (path, obj, callback) {
         var url = apiUrl + path;
         var options = _.extend({
-            headers: {Authorization: MangoPaySDK.credentials},
+            auth: MangoPaySDK.credentials,
             data: obj
         });
 
@@ -42,7 +42,7 @@ HttpClient = {
     put: function (path, obj, callback) {
         var url = apiUrl + path;
         var options = _.extend({
-            headers: {Authorization: MangoPaySDK.credentials},
+            auth: MangoPaySDK.credentials,
             data: obj
         });
 
