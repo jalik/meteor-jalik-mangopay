@@ -40,14 +40,14 @@ MangoPaySDK.hook = {
 
     /**
      * Fetches the notification hook by Id
-     * @param id
+     * @param hookId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (hookId, callback) {
+        if (typeof hookId !== 'number' && typeof hookId !== 'string') {
+            throw new Error('hookId is not valid');
         }
-        HttpClient.get('/hooks/' + id, callback);
+        HttpClient.get('/hooks/' + hookId, callback);
     },
 
     /**
@@ -60,18 +60,18 @@ MangoPaySDK.hook = {
 
     /**
      * Updates the notification hook by Id
-     * @param id
+     * @param hookId
      * @param obj
      * @param callback
      */
-    update: function (id, obj, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    update: function (hookId, obj, callback) {
+        if (typeof hookId !== 'number' && typeof hookId !== 'string') {
+            throw new Error('hookId is not valid');
         }
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/hooks/' + id, obj, callback);
+        HttpClient.put('/hooks/' + hookId, obj, callback);
     },
 
     /**

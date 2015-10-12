@@ -13,18 +13,18 @@ MangoPaySDK.transfer = {
 
     /**
      * Fetches the transfer by Id
-     * @param id
+     * @param transferId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (transferId, callback) {
+        if (typeof transferId !== 'number' && typeof transferId !== 'string') {
+            throw new Error('transferId is not valid');
         }
-        HttpClient.get('/transfers/' + id, callback);
+        HttpClient.get('/transfers/' + transferId, callback);
     },
 
     /**
-     * A transfer
+     * A e-money transfer (between wallets)
      * @param options
      * @constructor
      */

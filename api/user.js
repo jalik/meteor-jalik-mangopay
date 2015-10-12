@@ -1,14 +1,27 @@
 MangoPaySDK.user = {
+
     /**
-     * Fetches all cards of the user
-     * @param id
+     * Fetches all bank accounts of the user
+     * @param userId
      * @param callback
      */
-    cards: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    bankAccounts: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + id + '/cards', callback);
+        HttpClient.get('/users/' + userId + '/bankaccounts', callback);
+    },
+
+    /**
+     * Fetches all cards of the user
+     * @param userId
+     * @param callback
+     */
+    cards: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
+        }
+        HttpClient.get('/users/' + userId + '/cards', callback);
     },
 
     /**
@@ -29,15 +42,27 @@ MangoPaySDK.user = {
     },
 
     /**
-     * Fetches the user by Id
-     * @param id
+     * Fetches all documents of the user
+     * @param userId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    documents: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + id, callback);
+        HttpClient.get('/users/' + userId + '/KYC/documents', callback);
+    },
+
+    /**
+     * Fetches the user by Id
+     * @param userId
+     * @param callback
+     */
+    fetch: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
+        }
+        HttpClient.get('/users/' + userId, callback);
     },
 
     /**
@@ -50,58 +75,58 @@ MangoPaySDK.user = {
 
     /**
      * Fetches all transactions of the user
-     * @param id
+     * @param userId
      * @param callback
      */
-    transactions: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    transactions: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + id + '/transactions', callback);
+        HttpClient.get('/users/' + userId + '/transactions', callback);
     },
 
     /**
      * Updates the legal user by Id
-     * @param id
+     * @param userId
      * @param obj
      * @param callback
      */
-    updateLegal: function (id, obj, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    updateLegal: function (userId, obj, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/users/legal/' + id, obj, callback);
+        HttpClient.put('/users/legal/' + userId, obj, callback);
     },
 
     /**
      * Updates the natural user by Id
-     * @param id
+     * @param userId
      * @param obj
      * @param callback
      */
-    updateNatural: function (id, obj, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    updateNatural: function (userId, obj, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/users/natural/' + id, obj, callback);
+        HttpClient.put('/users/natural/' + userId, obj, callback);
     },
 
     /**
      * Fetches all wallets of the user
-     * @param id
+     * @param userId
      * @param callback
      */
-    wallets: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    wallets: function (userId, callback) {
+        if (typeof userId !== 'number' && typeof userId !== 'string') {
+            throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + id + '/wallets', callback);
+        HttpClient.get('/users/' + userId + '/wallets', callback);
     },
 
     /**

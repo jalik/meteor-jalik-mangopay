@@ -1,36 +1,46 @@
 MangoPaySDK.payout = {
+
+    /**
+     * Pay-out status
+     */
+    status: {
+        CREATED: 'CREATED',
+        FAILED: 'FAILED',
+        SUCCEEDED: 'SUCCEEDED'
+    },
+
     /**
      * Creates a new payout
      * @param obj
      * @param callback
      */
     create: function (obj, callback) {
-        if (obj instanceof MangoPaySDK.payout.Payout) {
-            HttpClient.post('/payouts/banwire', obj, callback);
+        if (obj instanceof MangoPaySDK.payout.BankWire) {
+            HttpClient.post('/payouts/bankwire', obj, callback);
         }
         else {
-            throw new Error('obj is not instance of Payout');
+            throw new Error('obj is not instance of BankWire');
         }
     },
 
     /**
      * Fetches the payout by Id
-     * @param id
+     * @param payoutId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (payoutId, callback) {
+        if (typeof payoutId !== 'number' && typeof payoutId !== 'string') {
+            throw new Error('payoutId is not valid');
         }
-        HttpClient.get('/payouts/' + id, callback);
+        HttpClient.get('/payouts/' + payoutId, callback);
     },
 
     /**
-     * A PAY-OUT
+     * A bank wire PAY-OUT
      * @param options
      * @constructor
      */
-    Payout: function (options) {
+    BankWire: function (options) {
         this.Tag = null;
         this.AuthorId = null;
         this.DebitedWalletId = null;

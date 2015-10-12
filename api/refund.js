@@ -1,11 +1,11 @@
 MangoPaySDK.refund = {
     /**
      * Creates a new refund
-     * @param obj
      * @param transferId
+     * @param obj
      * @param callback
      */
-    create: function (obj, transferId, callback) {
+    create: function (transferId, obj, callback) {
         if (typeof transferId !== 'number' && typeof transferId !== 'string') {
             throw new Error('transferId is not valid');
         }
@@ -22,14 +22,14 @@ MangoPaySDK.refund = {
 
     /**
      * Fetches the refund by Id
-     * @param id
+     * @param refundId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (refundId, callback) {
+        if (typeof refundId !== 'number' && typeof refundId !== 'string') {
+            throw new Error('refundId is not valid');
         }
-        HttpClient.get('/refunds/' + id, callback);
+        HttpClient.get('/refunds/' + refundId, callback);
     },
 
     /**

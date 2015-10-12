@@ -13,42 +13,42 @@ MangoPaySDK.wallet = {
 
     /**
      * Fetches the wallet by Id
-     * @param id
+     * @param walletId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (walletId, callback) {
+        if (typeof walletId !== 'number' && typeof walletId !== 'string') {
+            throw new Error('walletId is not valid');
         }
-        HttpClient.get('/wallets/' + id, callback);
+        HttpClient.get('/wallets/' + walletId, callback);
     },
 
     /**
      * Fetches all transactions of the wallet
-     * @param id
+     * @param walletId
      * @param callback
      */
-    transactions: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    transactions: function (walletId, callback) {
+        if (typeof walletId !== 'number' && typeof walletId !== 'string') {
+            throw new Error('walletId is not valid');
         }
-        HttpClient.get('/wallets/' + id + '/transactions', callback);
+        HttpClient.get('/wallets/' + walletId + '/transactions', callback);
     },
 
     /**
      * Updates the wallet by Id
-     * @param id
+     * @param walletId
      * @param obj
      * @param callback
      */
-    update: function (id, obj, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    update: function (walletId, obj, callback) {
+        if (typeof walletId !== 'number' && typeof walletId !== 'string') {
+            throw new Error('walletId is not valid');
         }
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/wallets/' + id, obj, callback);
+        HttpClient.put('/wallets/' + walletId, obj, callback);
     },
 
     /**
