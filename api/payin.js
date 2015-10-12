@@ -1,6 +1,25 @@
 MangoPaySDK.payin = {
+
     /**
-     * Creates a new payin
+     * Types of direct debit
+     */
+    directDebitType: {
+        ELV: 'ELV',
+        GIROPAY: 'GIROPAY',
+        SOFORT: 'SOFORT'
+    },
+
+    /**
+     * Pay-in status
+     */
+    status: {
+        CREATED: 'CREATED',
+        FAILED: 'FAILED',
+        SUCCEEDED: 'SUCCEEDED'
+    },
+
+    /**
+     * Creates a new pay-in
      * @param obj
      * @param callback
      */
@@ -17,29 +36,24 @@ MangoPaySDK.payin = {
         else if (obj instanceof MangoPaySDK.payin.TokenizedCard) {
             HttpClient.post('/payins/card/direct', obj, callback);
         }
+        else if (obj instanceof MangoPaySDK.payin.WebForm) {
+            HttpClient.post('/payins/card/web', obj, callback);
+        }
         else {
-            throw new Error('obj is not instance of [BankWire, DirectDebit, PreAuthorizedAmount, TokenizedCard]');
+            throw new Error('obj is not instance of [BankWire, DirectDebit, PreAuthorizedAmount, TokenizedCard, WebForm]');
         }
     },
 
     /**
-     * Fetches the payin by Id
-     * @param id
+     * Fetches the pay-in by Id
+     * @param payinId
      * @param callback
      */
-    fetch: function (id, callback) {
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+    fetch: function (payinId, callback) {
+        if (typeof payinId !== 'number' && typeof payinId !== 'string') {
+            throw new Error('payinId is not valid');
         }
-        HttpClient.get('/payins/' + id, callback);
-    },
-
-    /**
-     * Fetches all payins
-     * @param callback
-     */
-    list: function (callback) {
-        HttpClient.get('/payins', callback);
+        HttpClient.get('/payins/' + payinId, callback);
     },
 
     /**
@@ -96,7 +110,7 @@ MangoPaySDK.payin = {
     },
 
     /**
-     * A tokenized card PAY-IN
+     * A Tokenized card PAY-IN
      * @param options
      * @constructor
      */
@@ -110,6 +124,27 @@ MangoPaySDK.payin = {
         this.SecureModeReturnURL = null;
         this.SecureMode = null;
         this.Tag = null;
+
+        _.extend(this, options);
+    },
+
+    /**
+     * A Web form PAY-IN
+     * @param options
+     * @constructor
+     */
+    WebForm: function (options) {
+        this.Tag = null;
+        this.AuthorId = null;
+        this.DebitedFunds = null;
+        this.Fees = null;
+        this.CreditedWalletId = null;
+        this.ReturnURL = null;
+        this.TemplateURLOptions = null;
+        this.Culture = null;
+        this.CardType = null;
+        this.SecureMode = null;
+        this.CreditedUserId = null;
 
         _.extend(this, options);
     }
