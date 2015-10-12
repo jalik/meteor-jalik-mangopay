@@ -8,17 +8,17 @@ MangoPaySDK.bank = {
         UK: 'UK',
         US: 'US',
         CA: 'CA',
-        Other: 'Other'
+        OTHER: 'Other'
     },
 
     /**
      * Creates a new bank account
-     * @param obj
      * @param userId
      * @param type
+     * @param obj
      * @param callback
      */
-    create: function (obj, userId, type, callback) {
+    create: function (userId, type, obj, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
@@ -36,29 +36,17 @@ MangoPaySDK.bank = {
     /**
      * Fetches the bank account by Id
      * @param userId
-     * @param id
+     * @param bankAccountId
      * @param callback
      */
-    fetch: function (userId, id, callback) {
+    fetch: function (userId, bankAccountId, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        if (typeof id !== 'number' && typeof id !== 'string') {
-            throw new Error('id is not valid');
+        if (typeof bankAccountId !== 'number' && typeof bankAccountId !== 'string') {
+            throw new Error('bankAccountId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/bankaccounts', callback);
-    },
-
-    /**
-     * Fetches all bank accounts of the user
-     * @param userId
-     * @param callback
-     */
-    list: function (userId, callback) {
-        if (typeof userId !== 'number' && typeof userId !== 'string') {
-            throw new Error('userId is not valid');
-        }
-        HttpClient.get('/users/' + userId + '/bankaccounts', callback);
+        HttpClient.get('/users/' + userId + '/bankaccounts/' + bankAccountId, callback);
     },
 
     /**
