@@ -16,6 +16,16 @@ If later you want to remove the package :
 meteor remove jalik:mangopay
 ```
 
+### Authentication
+
+#### Basic authentication
+
+Execute once the code below using your own credentials and before any call to the API.
+
+```js
+MangoPaySDK.authenticate(clientId, clientPass);
+```
+
 ### Users
 
 #### Create a natural user
