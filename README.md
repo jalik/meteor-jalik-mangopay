@@ -1,6 +1,7 @@
 # MangoPay REST SDK
 
 This package is not official, it's a personal work but you can use it freely.
+
 **This is currently a WORK IN PROGRESS, so expect it to contain bugs and lack features**. 
 
 ### Installation
@@ -17,10 +18,9 @@ meteor remove jalik:mangopay
 
 ### Users
 
-#### Create a user
+#### Create a natural user
 
 ```js
-// Create a natural user
 MangoPaySDK.user.create(new MangoPaySDK.user.NaturalUser({
     Birthday: timestamp,
     Nationality: 'FR',
@@ -37,8 +37,9 @@ MangoPaySDK.user.create(new MangoPaySDK.user.NaturalUser({
 });
 ```
 
+#### Create a legal user
+
 ```js
-// Create a legal user
 MangoPaySDK.user.create(new MangoPaySDK.user.LegalUser({
     Email: 'seller@gmail.com',
     Name: 'Seller',
@@ -74,7 +75,7 @@ MangoPaySDK.user.update(userId, {
 #### Fetch a user
 
 ```js
-MangoPaySDK.user.fetch(hookId, function (err, user) {
+MangoPaySDK.user.fetch(userId, function (err, user) {
     if (err || !user) {
         console.error(err);
     } else {
@@ -294,10 +295,9 @@ MangoPaySDK.event.list(function (err, list) {
 
 ### Payins
 
-#### Create a payin
+#### Create a bank wire payin
 
 ```js
-// Create a bank wire payin
 MangoPaySDK.payin.create(new MangoPaySDK.payin.BankWire({
     AuthorId: authorId,
     CreditedWalletId: walletId,
@@ -309,17 +309,18 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.BankWire({
         Currency: 'EUR',
         Amount: 0
     }
-}), function (err, payout) {
-    if (err || !payout) {
+}), function (err, payin) {
+    if (err || !payin) {
         console.error(err);
     } else {
-        console.log(payout);
+        console.log(payin);
     }
 });
 ```
 
+#### Create a direct debit payin
+
 ```js
-// Create a direct debit payin
 MangoPaySDK.payin.create(new MangoPaySDK.payin.DirectDebit({
     AuthorId: 8837505,
     CreditedWalletId: 8837797,
@@ -333,17 +334,18 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.DirectDebit({
         Currency: 'EUR',
         Amount: 0
     }
-}), function (err, payout) {
-    if (err || !payout) {
+}), function (err, payin) {
+    if (err || !payin) {
         console.error(err);
     } else {
-        console.log(payout);
+        console.log(payin);
     }
 });
 ```
 
+#### Create a pre-authorized payin
+
 ```js
-// Create a pre-authorized payin
 MangoPaySDK.payin.create(new MangoPaySDK.payin.PreAuthorizedAmount({
     AuthorId: authorId,
     PreauthorizationId: preAuthId,
@@ -356,17 +358,18 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.PreAuthorizedAmount({
         Currency: 'EUR',
         Amount: 0
     }
-}), function (err, payout) {
-    if (err || !payout) {
+}), function (err, payin) {
+    if (err || !payin) {
         console.error(err);
     } else {
-        console.log(payout);
+        console.log(payin);
     }
 });
 ```
 
+#### Create a tokenized card payin
+
 ```js
-// Create a tokenized card payin
 MangoPaySDK.payin.create(new MangoPaySDK.payin.TokenizedCard({
     AuthorId: authorId,
     CardId: cardId,
@@ -380,17 +383,18 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.TokenizedCard({
         Currency: 'EUR',
         Amount: 0
     }
-}), function (err, payout) {
-    if (err || !payout) {
+}), function (err, payin) {
+    if (err || !payin) {
         console.error(err);
     } else {
-        console.log(payout);
+        console.log(payin);
     }
 });
 ```
 
+#### Create a web form payin
+
 ```js
-// Create a web form payin
 MangoPaySDK.payin.create(new MangoPaySDK.payin.WebForm({
     AuthorId: authorId,
     CreditedWalletId: walletId,
@@ -405,11 +409,11 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.WebForm({
         Currency: 'EUR',
         Amount: 1000
     }
-}), function (err, payout) {
-    if (err || !payout) {
+}), function (err, payin) {
+    if (err || !payin) {
         console.error(err);
     } else {
-        console.log(payout);
+        console.log(payin);
     }
 });
 ```
@@ -417,7 +421,7 @@ MangoPaySDK.payin.create(new MangoPaySDK.payin.WebForm({
 
 ### Payouts
 
-#### Create a payout
+#### Create a bank wire payout
 
 ```js
 MangoPaySDK.payout.create(new MangoPaySDK.payout.BankWire({
