@@ -1,6 +1,14 @@
 MangoPaySDK.user = {
 
     /**
+     * Types of person
+     */
+    personTypes: {
+        BUSINESS: 'BUSINESS',
+        ORGANIZATION: 'ORGANIZATION'
+    },
+
+    /**
      * Fetches all bank accounts of the user
      * @param userId
      * @param callback
