@@ -5,7 +5,8 @@ Package.describe({
     summary: 'MangoPay REST SDK',
     homepage: 'https://github.com/jalik/jalik-mangopay',
     git: 'https://github.com/jalik/jalik-mangopay.git',
-    documentation: 'README.md'
+    documentation: 'README.md',
+    license: 'MIT'
 });
 
 Package.onUse(function (api) {
