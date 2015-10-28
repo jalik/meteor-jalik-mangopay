@@ -30,6 +30,6 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
     api.use('tinytest');
-    api.use('jalik-mangopay');
-    api.addFiles('jalik-mangopay-tests.js');
+    api.use('jalik:mangopay');
+    api.addFiles('mangopay-tests.js');
 });
