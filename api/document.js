@@ -22,7 +22,7 @@ MangoPaySDK.document = {
             throw new Error('userId is not valid');
         }
         if (obj instanceof MangoPaySDK.document.Document) {
-            HttpClient.post('/users/' + userId + '/KYC/documents', obj, callback);
+            MangoPayClient.post('/users/' + userId + '/KYC/documents', obj, callback);
         }
         else {
             throw new Error('obj is not instance of Document');
@@ -42,7 +42,7 @@ MangoPaySDK.document = {
         if (typeof documentId !== 'number' && typeof documentId !== 'string') {
             throw new Error('documentId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/KYC/documents/' + documentId, callback);
+        MangoPayClient.get('/users/' + userId + '/KYC/documents/' + documentId, callback);
     },
 
     /**
@@ -62,7 +62,7 @@ MangoPaySDK.document = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/users/' + userId + '/KYC/documents/' + documentId, obj, callback);
+        MangoPayClient.put('/users/' + userId + '/KYC/documents/' + documentId, obj, callback);
     },
 
     /**
@@ -82,7 +82,7 @@ MangoPaySDK.document = {
         if (typeof data === null) {
             throw new Error('data is not valid');
         }
-        HttpClient.post('/users/' + userId + '/KYC/documents/' + documentId + '/pages', {File: data}, callback);
+        MangoPayClient.post('/users/' + userId + '/KYC/documents/' + documentId + '/pages', {File: data}, callback);
     },
 
     /**

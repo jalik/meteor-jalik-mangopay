@@ -10,10 +10,10 @@ MangoPaySDK.refund = {
             throw new Error('transferId is not valid');
         }
         if (obj instanceof MangoPaySDK.refund.TransferRefund) {
-            HttpClient.post('/transfers/' + transferId + '/refunds', obj, callback);
+            MangoPayClient.post('/transfers/' + transferId + '/refunds', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.refund.PayinRefund) {
-            HttpClient.post('/payins/' + transferId + '/refunds', obj, callback);
+            MangoPayClient.post('/payins/' + transferId + '/refunds', obj, callback);
         }
         else {
             throw new Error('obj is not instance of TransferRefund');
@@ -29,7 +29,7 @@ MangoPaySDK.refund = {
         if (typeof refundId !== 'number' && typeof refundId !== 'string') {
             throw new Error('refundId is not valid');
         }
-        HttpClient.get('/refunds/' + refundId, callback);
+        MangoPayClient.get('/refunds/' + refundId, callback);
     },
 
     /**

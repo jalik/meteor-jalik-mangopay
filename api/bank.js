@@ -26,7 +26,7 @@ MangoPaySDK.bank = {
             throw new Error('type is not valid');
         }
         if (obj instanceof MangoPaySDK.bank.BankAccount) {
-            HttpClient.post('/users/' + userId + '/bankaccounts/' + type, obj, callback);
+            MangoPayClient.post('/users/' + userId + '/bankaccounts/' + type, obj, callback);
         }
         else {
             throw new Error('obj is not instance of BankAccount');
@@ -46,7 +46,7 @@ MangoPaySDK.bank = {
         if (typeof bankAccountId !== 'number' && typeof bankAccountId !== 'string') {
             throw new Error('bankAccountId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/bankaccounts/' + bankAccountId, callback);
+        MangoPayClient.get('/users/' + userId + '/bankaccounts/' + bankAccountId, callback);
     },
 
     /**

@@ -16,7 +16,7 @@ MangoPaySDK.payout = {
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.payout.BankWire) {
-            HttpClient.post('/payouts/bankwire', obj, callback);
+            MangoPayClient.post('/payouts/bankwire', obj, callback);
         }
         else {
             throw new Error('obj is not instance of BankWire');
@@ -32,7 +32,7 @@ MangoPaySDK.payout = {
         if (typeof payoutId !== 'number' && typeof payoutId !== 'string') {
             throw new Error('payoutId is not valid');
         }
-        HttpClient.get('/payouts/' + payoutId, callback);
+        MangoPayClient.get('/payouts/' + payoutId, callback);
     },
 
     /**

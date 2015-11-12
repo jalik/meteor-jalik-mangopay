@@ -1,6 +1,6 @@
 Package.describe({
     name: 'jalik:mangopay',
-    version: '0.2.0',
+    version: '0.2.1',
     author: 'karl.stein.pro@gmail.com',
     summary: 'MangoPay REST SDK',
     homepage: 'https://github.com/jalik/jalik-mangopay',
@@ -12,20 +12,21 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom('1.1.0.2');
     api.use(['check', 'http', 'underscore']);
-    api.addFiles(['mangopay.js', 'mangopay-http.js'], 'server');
-    api.addFiles(['api/bank.js'], 'server');
-    api.addFiles(['api/card.js'], 'server');
-    api.addFiles(['api/document.js'], 'server');
-    api.addFiles(['api/event.js'], 'server');
-    api.addFiles(['api/hook.js'], 'server');
-    api.addFiles(['api/payin.js'], 'server');
-    api.addFiles(['api/payout.js'], 'server');
-    api.addFiles(['api/pre_authorization.js'], 'server');
-    api.addFiles(['api/refund.js'], 'server');
-    api.addFiles(['api/transfer.js'], 'server');
-    api.addFiles(['api/user.js'], 'server');
-    api.addFiles(['api/wallet.js'], 'server');
+    api.addFiles(['mangopay.js', 'mangopay-client.js']);
+    api.addFiles(['api/bank.js']);
+    api.addFiles(['api/card.js']);
+    api.addFiles(['api/document.js']);
+    api.addFiles(['api/event.js']);
+    api.addFiles(['api/hook.js']);
+    api.addFiles(['api/payin.js']);
+    api.addFiles(['api/payout.js']);
+    api.addFiles(['api/pre_authorization.js']);
+    api.addFiles(['api/refund.js']);
+    api.addFiles(['api/transfer.js']);
+    api.addFiles(['api/user.js']);
+    api.addFiles(['api/wallet.js']);
     api.export('MangoPaySDK');
+    api.export('MangoPayClient');
 });
 
 Package.onTest(function (api) {

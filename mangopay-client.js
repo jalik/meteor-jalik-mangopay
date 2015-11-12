@@ -1,4 +1,24 @@
-HttpClient = {
+MangoPayClient = {
+    /**
+     * Response callback
+     * @param err
+     * @param result
+     * @param callback
+     */
+    callback: function (err, result, callback) {
+        if (typeof callback === 'function') {
+            if (result && result.data) {
+                callback(err, result.data, result);
+            } else {
+                callback(new Error('no data'), null, result);
+            }
+        } else {
+            if (err) {
+                throw err;
+            }
+        }
+    },
+
     /**
      * Executes a GET request
      * @param path
@@ -11,7 +31,7 @@ HttpClient = {
         });
 
         HTTP.get(url, options, function (err, result) {
-            handleAPIResponse(err, result, callback);
+            MangoPayClient.callback(err, result, callback);
         });
     },
 
@@ -28,8 +48,10 @@ HttpClient = {
             data: obj
         });
 
+        console.log('POST ' + url, options);
+
         HTTP.post(url, options, function (err, result) {
-            handleAPIResponse(err, result, callback);
+            MangoPayClient.callback(err, result, callback);
         });
     },
 
@@ -47,21 +69,7 @@ HttpClient = {
         });
 
         HTTP.put(url, options, function (err, result) {
-            handleAPIResponse(err, result, callback);
+            MangoPayClient.callback(err, result, callback);
         });
-    }
-};
-
-var handleAPIResponse = function (err, result, callback) {
-    if (typeof callback === 'function') {
-        if (result && result.data) {
-            callback(err, result.data, result);
-        } else {
-            callback(new Error('no data'), null, result);
-        }
-    } else {
-        if (err) {
-            throw err;
-        }
     }
 };

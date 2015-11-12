@@ -17,7 +17,7 @@ MangoPaySDK.preAuthorization = {
         if (!(obj instanceof MangoPaySDK.preAuthorization.PreAuthorization)) {
             throw new Error('obj is not instance of PreAuthorization');
         }
-        HttpClient.post('/preauthorizations/card/direct', obj, callback);
+        MangoPayClient.post('/preauthorizations/card/direct', obj, callback);
     },
 
     /**
@@ -29,7 +29,7 @@ MangoPaySDK.preAuthorization = {
         if (typeof preAuthId !== 'number' && typeof preAuthId !== 'string') {
             throw new Error('preAuthId is not valid');
         }
-        HttpClient.get('/preauthorizations/' + preAuthId, callback);
+        MangoPayClient.get('/preauthorizations/' + preAuthId, callback);
     },
 
     /**
@@ -45,7 +45,7 @@ MangoPaySDK.preAuthorization = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/preauthorizations/' + preAuthId, obj, callback);
+        MangoPayClient.put('/preauthorizations/' + preAuthId, obj, callback);
     },
 
     /**

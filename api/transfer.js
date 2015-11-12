@@ -8,7 +8,7 @@ MangoPaySDK.transfer = {
         if (!(obj instanceof MangoPaySDK.transfer.Transfer)) {
             throw new Error('obj is not instance of Transfer');
         }
-        HttpClient.post('/transfers', obj, callback);
+        MangoPayClient.post('/transfers', obj, callback);
     },
 
     /**
@@ -20,7 +20,7 @@ MangoPaySDK.transfer = {
         if (typeof transferId !== 'number' && typeof transferId !== 'string') {
             throw new Error('transferId is not valid');
         }
-        HttpClient.get('/transfers/' + transferId, callback);
+        MangoPayClient.get('/transfers/' + transferId, callback);
     },
 
     /**

@@ -1,6 +1,15 @@
 MangoPaySDK.card = {
 
     /**
+     * Status of card
+     */
+    status: {
+        CREATED: 'CREATED',
+        ERROR: 'ERROR',
+        VALIDATED: 'VALIDATED'
+    },
+
+    /**
      * Types of card
      */
     type: {
@@ -27,8 +36,9 @@ MangoPaySDK.card = {
 
         // Create the card registration
         MangoPaySDK.cardRegistraton.create(cr, function (err, result) {
+
             if (err || !result || result.Status !== MangoPaySDK.cardRegistraton.status.CREATED) {
-                handleAPIResponse(err, result);
+                MangoPayClient.callback(err, result, callback);
             } else {
                 // Send card details
                 HTTP.post(result.CardRegistrationURL, {
@@ -37,16 +47,22 @@ MangoPaySDK.card = {
                         accessKeyRef: result.AccessKey,
                         cardNumber: obj.CardNumber,
                         cardExpirationDate: obj.CardExpirationDate,
-                        cardCvx: obj.CardCvx
+                        cardCvx: String(obj.CardCvx)
                     }
                 }, function (err, result2) {
-                    if (err || !result2 || result2.statusCode !== 200 || !result2.content) {
-                        handleAPIResponse(err, result2);
+                    if (err || !result2 || result2.statusCode !== 200 || !result2.content || result2.content.indexOf('error') === 0) {
+                        MangoPayClient.callback(err, result2, callback);
                     } else {
                         // Save registration data
                         MangoPaySDK.cardRegistraton.update(result.Id, {
                             RegistrationData: result2.content
-                        }, callback);
+                        }, function (err, result3) {
+                            if (err || !result3 || result3.Status !== MangoPaySDK.cardRegistraton.status.VALIDATED) {
+                                MangoPayClient.callback(err, result3, callback);
+                            } else {
+                                MangoPaySDK.card.fetch(result3.CardId, callback);
+                            }
+                        });
                     }
                 });
             }
@@ -62,7 +78,7 @@ MangoPaySDK.card = {
         if (typeof cardId !== 'number' && typeof cardId !== 'string') {
             throw new Error('cardId is not valid');
         }
-        HttpClient.get('/cards/' + cardId, callback);
+        MangoPayClient.get('/cards/' + cardId, callback);
     },
 
     /**
@@ -78,7 +94,7 @@ MangoPaySDK.card = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/cards/' + cardId, obj, callback);
+        MangoPayClient.put('/cards/' + cardId, obj, callback);
     },
 
     /**
@@ -118,7 +134,7 @@ MangoPaySDK.cardRegistraton = {
         if (!(obj instanceof MangoPaySDK.cardRegistraton.CardRegistration)) {
             throw new Error('obj is not instance of CardRegistration');
         }
-        HttpClient.post('/cardregistrations', obj, callback);
+        MangoPayClient.post('/cardregistrations', obj, callback);
     },
 
     /**
@@ -134,7 +150,7 @@ MangoPaySDK.cardRegistraton = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/cardregistrations/' + cardRegistrationId, obj, callback);
+        MangoPayClient.put('/cardregistrations/' + cardRegistrationId, obj, callback);
     },
 
     /**

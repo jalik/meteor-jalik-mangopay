@@ -17,7 +17,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/bankaccounts', callback);
+        MangoPayClient.get('/users/' + userId + '/bankaccounts', callback);
     },
 
     /**
@@ -29,7 +29,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/cards', callback);
+        MangoPayClient.get('/users/' + userId + '/cards', callback);
     },
 
     /**
@@ -39,10 +39,10 @@ MangoPaySDK.user = {
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.user.LegalUser) {
-            HttpClient.post('/users/natural', obj, callback);
+            MangoPayClient.post('/users/natural', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.user.NaturalUser) {
-            HttpClient.post('/users/natural', obj, callback);
+            MangoPayClient.post('/users/natural', obj, callback);
         }
         else {
             throw new Error('obj is not instance of LegalUser or NaturalUser');
@@ -58,7 +58,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/KYC/documents', callback);
+        MangoPayClient.get('/users/' + userId + '/KYC/documents', callback);
     },
 
     /**
@@ -70,7 +70,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId, callback);
+        MangoPayClient.get('/users/' + userId, callback);
     },
 
     /**
@@ -78,7 +78,7 @@ MangoPaySDK.user = {
      * @param callback
      */
     list: function (callback) {
-        HttpClient.get('/users', callback);
+        MangoPayClient.get('/users', callback);
     },
 
     /**
@@ -90,7 +90,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/transactions', callback);
+        MangoPayClient.get('/users/' + userId + '/transactions', callback);
     },
 
     /**
@@ -106,7 +106,7 @@ MangoPaySDK.user = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/users/legal/' + userId, obj, callback);
+        MangoPayClient.put('/users/legal/' + userId, obj, callback);
     },
 
     /**
@@ -122,7 +122,7 @@ MangoPaySDK.user = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/users/natural/' + userId, obj, callback);
+        MangoPayClient.put('/users/natural/' + userId, obj, callback);
     },
 
     /**
@@ -134,7 +134,7 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        HttpClient.get('/users/' + userId + '/wallets', callback);
+        MangoPayClient.get('/users/' + userId + '/wallets', callback);
     },
 
     /**

@@ -31,7 +31,7 @@ MangoPaySDK.hook = {
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.hook.Hook) {
-            HttpClient.post('/hooks', obj, callback);
+            MangoPayClient.post('/hooks', obj, callback);
         }
         else {
             throw new Error('obj is not instance of Hook');
@@ -47,7 +47,7 @@ MangoPaySDK.hook = {
         if (typeof hookId !== 'number' && typeof hookId !== 'string') {
             throw new Error('hookId is not valid');
         }
-        HttpClient.get('/hooks/' + hookId, callback);
+        MangoPayClient.get('/hooks/' + hookId, callback);
     },
 
     /**
@@ -55,7 +55,7 @@ MangoPaySDK.hook = {
      * @param callback
      */
     list: function (callback) {
-        HttpClient.get('/hooks', callback);
+        MangoPayClient.get('/hooks', callback);
     },
 
     /**
@@ -71,7 +71,7 @@ MangoPaySDK.hook = {
         if (typeof obj !== 'object' || obj === null) {
             throw new Error('obj is not valid');
         }
-        HttpClient.put('/hooks/' + hookId, obj, callback);
+        MangoPayClient.put('/hooks/' + hookId, obj, callback);
     },
 
     /**

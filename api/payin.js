@@ -19,25 +19,25 @@ MangoPaySDK.payin = {
     },
 
     /**
-     * Creates a new pay-in
+     * Creates a new PAY-IN
      * @param obj
      * @param callback
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.payin.BankWire) {
-            HttpClient.post('/payins/bankwire/direct', obj, callback);
+            MangoPayClient.post('/payins/bankwire/direct', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.payin.DirectDebit) {
-            HttpClient.post('/payins/directdebit/web', obj, callback);
+            MangoPayClient.post('/payins/directdebit/web', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.payin.PreAuthorizedAmount) {
-            HttpClient.post('/payins/PreAuthorized/direct', obj, callback);
+            MangoPayClient.post('/payins/PreAuthorized/direct', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.payin.TokenizedCard) {
-            HttpClient.post('/payins/card/direct', obj, callback);
+            MangoPayClient.post('/payins/card/direct', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.payin.WebForm) {
-            HttpClient.post('/payins/card/web', obj, callback);
+            MangoPayClient.post('/payins/card/web', obj, callback);
         }
         else {
             throw new Error('obj is not instance of [BankWire, DirectDebit, PreAuthorizedAmount, TokenizedCard, WebForm]');
@@ -45,7 +45,7 @@ MangoPaySDK.payin = {
     },
 
     /**
-     * Fetches the pay-in by Id
+     * Fetches the PAY-IN by Id
      * @param payinId
      * @param callback
      */
@@ -53,7 +53,7 @@ MangoPaySDK.payin = {
         if (typeof payinId !== 'number' && typeof payinId !== 'string') {
             throw new Error('payinId is not valid');
         }
-        HttpClient.get('/payins/' + payinId, callback);
+        MangoPayClient.get('/payins/' + payinId, callback);
     },
 
     /**
