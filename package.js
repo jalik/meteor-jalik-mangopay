@@ -1,6 +1,6 @@
 Package.describe({
     name: 'jalik:mangopay',
-    version: '0.2.1',
+    version: '0.2.2',
     author: 'karl.stein.pro@gmail.com',
     summary: 'MangoPay REST SDK',
     homepage: 'https://github.com/jalik/jalik-mangopay',
@@ -12,6 +12,7 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom('1.1.0.2');
     api.use(['check', 'http', 'underscore']);
+
     api.addFiles(['mangopay.js', 'mangopay-client.js']);
     api.addFiles(['api/bank.js']);
     api.addFiles(['api/card.js']);
@@ -25,12 +26,7 @@ Package.onUse(function (api) {
     api.addFiles(['api/transfer.js']);
     api.addFiles(['api/user.js']);
     api.addFiles(['api/wallet.js']);
+
     api.export('MangoPaySDK');
     api.export('MangoPayClient');
-});
-
-Package.onTest(function (api) {
-    api.use('tinytest');
-    api.use('jalik:mangopay');
-    api.addFiles('mangopay-tests.js');
 });
