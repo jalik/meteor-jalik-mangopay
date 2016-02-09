@@ -39,7 +39,7 @@ MangoPaySDK.user = {
      */
     create: function (obj, callback) {
         if (obj instanceof MangoPaySDK.user.LegalUser) {
-            MangoPayClient.post('/users/natural', obj, callback);
+            MangoPayClient.post('/users/legal', obj, callback);
         }
         else if (obj instanceof MangoPaySDK.user.NaturalUser) {
             MangoPayClient.post('/users/natural', obj, callback);

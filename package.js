@@ -1,6 +1,6 @@
 Package.describe({
     name: 'jalik:mangopay',
-    version: '0.2.2',
+    version: '0.2.3',
     author: 'karl.stein.pro@gmail.com',
     summary: 'MangoPay REST SDK',
     homepage: 'https://github.com/jalik/jalik-mangopay',
