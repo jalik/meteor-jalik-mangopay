@@ -23,6 +23,13 @@ meteor remove jalik:mangopay
 Execute once the code below using your own credentials and before any call to the API.
 
 ```js
+// Define which environment to use (sandbox or live)
+MangoPaySDK.production = true;
+
+// Define which version of the API to use
+MangoPaySDK.apiVersion = 'v2';
+
+// Define your credentials
 MangoPaySDK.authenticate(clientId, clientPass);
 ```
 

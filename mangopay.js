@@ -1,10 +1,15 @@
-apiUrl = null;
-
 MangoPaySDK = {
+
     /**
-     * The API mode to use (sandbox or live)
+     * The API URL
+     * @type {string}
      */
-    production: false,
+    apiUrl: '',
+
+    /**
+     * The API version to use
+     */
+    apiVersion: 'v2',
 
     /**
      * Error codes
@@ -68,18 +73,61 @@ MangoPaySDK = {
     },
 
     /**
+     * The API mode to use (sandbox or live)
+     * @type {boolean}
+     */
+    production: false,
+
+    /**
      * Prepares credentials for authentication
      * @param clientId
      * @param secret
      */
     authenticate: function (clientId, secret) {
-        var prodUrl = 'https://api.mangopay.com/v2';
-        var testUrl = 'https://api.sandbox.mangopay.com/v2';
+        var liveUrl = 'https://api.mangopay.com/' + this.apiVersion;
+        var sandUrl = 'https://api.sandbox.mangopay.com/' + this.apiVersion;
+
+        if (typeof window !== 'undefined' || typeof navigator !== 'undefined') {
+            console.warn("WARNING : You are authenticating to the MangoPay API on the client, all calls to the API should be done on the server for security reasons.");
+        }
 
         // Set the API endpoint
-        apiUrl = (MangoPaySDK.production ? prodUrl : testUrl) + '/' + clientId;
+        this.apiUrl = (this.isLive() ? liveUrl : sandUrl) + '/' + clientId;
 
         // Set credentials used for authentication
-        MangoPaySDK.credentials = clientId + ':' + secret;
+        this.credentials = clientId + ':' + secret;
+    },
+
+    /**
+     * Returns the API URL
+     * @return {string}
+     */
+    getApiUrl: function () {
+        return this.apiUrl;
+    },
+
+    /**
+     * Returns the version of the API
+     * @return {string}
+     */
+    getApiVersion: function () {
+        return this.apiVersion;
+    },
+
+    /**
+     * Returns the error message
+     * @param code
+     * @return {string}
+     */
+    getErrorMessage: function (code) {
+        return typeof this.errors[code] === 'string' ? this.errors[code] : 'Unknown error';
+    },
+
+    /**
+     * Checks if the SDK is pointing to the live API (production)
+     * @return {boolean}
+     */
+    isLive: function () {
+        return this.production === true;
     }
 };

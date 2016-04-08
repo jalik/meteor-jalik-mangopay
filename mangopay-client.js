@@ -2,6 +2,7 @@ MangoPayClient = {
 
     /**
      * Displays debug info in the console
+     * @type {boolean}
      */
     debug: false,
 
@@ -53,14 +54,9 @@ MangoPayClient = {
      * @param callback
      */
     get: function (path, callback) {
-        var url = apiUrl + path;
-        var options = _.extend({
-            auth: MangoPaySDK.credentials
-        });
-
-        if (this.debug) {
-            console.log('GET ' + url, options);
-        }
+        var url = MangoPaySDK.apiUrl + path;
+        var options = {auth: MangoPaySDK.credentials};
+        this.debug && console.log('GET ' + url, options);
 
         HTTP.get(url, options, function (err, result) {
             MangoPayClient.callback(err, result, callback);
@@ -74,15 +70,9 @@ MangoPayClient = {
      * @param callback
      */
     post: function (path, obj, callback) {
-        var url = apiUrl + path;
-        var options = _.extend({
-            auth: MangoPaySDK.credentials,
-            data: obj
-        });
-
-        if (this.debug) {
-            console.log('POST ' + url, options);
-        }
+        var url = MangoPaySDK.apiUrl + path;
+        var options = {auth: MangoPaySDK.credentials, data: obj};
+        this.debug && console.log('POST ' + url, options);
 
         HTTP.post(url, options, function (err, result) {
             MangoPayClient.callback(err, result, callback);
@@ -96,15 +86,9 @@ MangoPayClient = {
      * @param callback
      */
     put: function (path, obj, callback) {
-        var url = apiUrl + path;
-        var options = _.extend({
-            auth: MangoPaySDK.credentials,
-            data: obj
-        });
-
-        if (this.debug) {
-            console.log('PUT ' + url, options);
-        }
+        var url = MangoPaySDK.apiUrl + path;
+        var options = {auth: MangoPaySDK.credentials, data: obj};
+        this.debug && console.log('PUT ' + url, options);
 
         HTTP.put(url, options, function (err, result) {
             MangoPayClient.callback(err, result, callback);
