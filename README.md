@@ -104,7 +104,7 @@ MangoPaySDK.user.fetch(userId, function (err, user) {
 #### List all users
 
 ```js
-MangoPaySDK.user.list(function (err, list) {
+MangoPaySDK.user.list(params, function (err, list) {
     if (err || !list) {
         console.error(err);
     } else {
@@ -116,7 +116,7 @@ MangoPaySDK.user.list(function (err, list) {
 #### List bank accounts of a user
 
 ```js
-MangoPaySDK.user.bankAccounts(userId, function (err, list) {
+MangoPaySDK.user.bankAccounts(userId, params, function (err, list) {
     if (err || !list) {
       console.error(err);
     } else {
@@ -128,7 +128,7 @@ MangoPaySDK.user.bankAccounts(userId, function (err, list) {
 #### List cards of a user
 
 ```js
-MangoPaySDK.user.cards(userId, function (err, list) {
+MangoPaySDK.user.cards(userId, params, function (err, list) {
     if (err || !list) {
       console.error(err);
     } else {
@@ -140,7 +140,7 @@ MangoPaySDK.user.cards(userId, function (err, list) {
 #### List KYC documents of a user
 
 ```js
-MangoPaySDK.user.documents(userId, function (err, list) {
+MangoPaySDK.user.documents(userId, params, function (err, list) {
     if (err || !list) {
       console.error(err);
     } else {
@@ -152,7 +152,7 @@ MangoPaySDK.user.documents(userId, function (err, list) {
 #### List transactions of a user
 
 ```js
-MangoPaySDK.user.transactions(userId, function (err, list) {
+MangoPaySDK.user.transactions(userId, params, function (err, list) {
     if (err || !list) {
       console.error(err);
     } else {
@@ -164,7 +164,7 @@ MangoPaySDK.user.transactions(userId, function (err, list) {
 #### List wallets of a user
 
 ```js
-MangoPaySDK.user.wallets(userId, function (err, list) {
+MangoPaySDK.user.wallets(userId, params, function (err, list) {
     if (err || !list) {
       console.error(err);
     } else {
@@ -220,7 +220,7 @@ MangoPaySDK.wallet.fetch(walletId, function (err, wallet) {
 #### List transactions of a wallet
 
 ```js
-MangoPaySDK.wallet.transactions(function (err, list) {
+MangoPaySDK.wallet.transactions(params, function (err, list) {
     if (err || !list) {
         console.error(err);
     } else {
@@ -301,7 +301,7 @@ MangoPaySDK.card.fetch(cardId, function (err, card) {
 #### List all events
 
 ```js
-MangoPaySDK.event.list(function (err, list) {
+MangoPaySDK.event.list(params, function (err, list) {
     if (err || !list) {
         console.error(err);
     } else {
@@ -521,11 +521,43 @@ MangoPaySDK.hook.fetch(hookId, function (err, hook) {
 #### List all hooks
 
 ```js
-MangoPaySDK.hook.list(function (err, list) {
+MangoPaySDK.hook.list(params, function (err, list) {
     if (err || !list) {
         console.error(err);
     } else {
         console.log(list);
+    }
+});
+```
+
+## Result pagination
+
+https://docs.mangopay.com/api-references/pagination/
+You can paginate list results like below.
+
+```js
+var params = {page: 5, per_page: 25};
+MangoPaySDK.hook.list(params, function (err, list) {
+    if (err || !list) {
+        console.error(err);
+    } else {
+        console.log(list);
+    }
+});
+```
+
+## Sorting and filtering results
+
+https://docs.mangopay.com/api-references/sort-lists/
+You can sort and filter list results like below.
+
+```js
+var params = {Status: 'SUCCEEDED', Type: 'PAYIN'};
+MangoPaySDK.user.transactions(userId, params, function (err, list) {
+    if (err || !list) {
+      console.error(err);
+    } else {
+      console.log(list);
     }
 });
 ```

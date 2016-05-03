@@ -20,19 +20,20 @@ MangoPaySDK.wallet = {
         if (typeof walletId !== 'number' && typeof walletId !== 'string') {
             throw new Error('walletId is not valid');
         }
-        MangoPayClient.get('/wallets/' + walletId, callback);
+        MangoPayClient.get('/wallets/' + walletId, null, callback);
     },
 
     /**
      * Fetches all transactions of the wallet
      * @param walletId
+     * @param params
      * @param callback
      */
-    transactions: function (walletId, callback) {
+    transactions: function (walletId, params, callback) {
         if (typeof walletId !== 'number' && typeof walletId !== 'string') {
             throw new Error('walletId is not valid');
         }
-        MangoPayClient.get('/wallets/' + walletId + '/transactions', callback);
+        MangoPayClient.get('/wallets/' + walletId + '/transactions', params, callback);
     },
 
     /**

@@ -1,4 +1,5 @@
 MangoPaySDK.transfer = {
+
     /**
      * Creates a new transfer
      * @param obj
@@ -20,7 +21,7 @@ MangoPaySDK.transfer = {
         if (typeof transferId !== 'number' && typeof transferId !== 'string') {
             throw new Error('transferId is not valid');
         }
-        MangoPayClient.get('/transfers/' + transferId, callback);
+        MangoPayClient.get('/transfers/' + transferId, null, callback);
     },
 
     /**

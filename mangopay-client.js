@@ -51,11 +51,12 @@ MangoPayClient = {
     /**
      * Executes a GET request
      * @param path
+     * @param params
      * @param callback
      */
-    get: function (path, callback) {
+    get: function (path, params, callback) {
         var url = MangoPaySDK.apiUrl + path;
-        var options = {auth: MangoPaySDK.credentials};
+        var options = {auth: MangoPaySDK.credentials, params: params};
         this.debug && console.log('GET ' + url, options);
 
         HTTP.get(url, options, function (err, result) {

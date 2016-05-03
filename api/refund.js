@@ -1,4 +1,5 @@
 MangoPaySDK.refund = {
+
     /**
      * Creates a new refund
      * @param transferId
@@ -29,7 +30,7 @@ MangoPaySDK.refund = {
         if (typeof refundId !== 'number' && typeof refundId !== 'string') {
             throw new Error('refundId is not valid');
         }
-        MangoPayClient.get('/refunds/' + refundId, callback);
+        MangoPayClient.get('/refunds/' + refundId, null, callback);
     },
 
     /**

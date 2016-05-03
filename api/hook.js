@@ -47,15 +47,16 @@ MangoPaySDK.hook = {
         if (typeof hookId !== 'number' && typeof hookId !== 'string') {
             throw new Error('hookId is not valid');
         }
-        MangoPayClient.get('/hooks/' + hookId, callback);
+        MangoPayClient.get('/hooks/' + hookId, null, callback);
     },
 
     /**
      * Fetches all notification hooks
+     * @param params
      * @param callback
      */
-    list: function (callback) {
-        MangoPayClient.get('/hooks', callback);
+    list: function (params, callback) {
+        MangoPayClient.get('/hooks', params, callback);
     },
 
     /**

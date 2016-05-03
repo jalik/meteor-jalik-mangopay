@@ -11,25 +11,27 @@ MangoPaySDK.user = {
     /**
      * Fetches all bank accounts of the user
      * @param userId
+     * @param params
      * @param callback
      */
-    bankAccounts: function (userId, callback) {
+    bankAccounts: function (userId, params, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/bankaccounts', callback);
+        MangoPayClient.get('/users/' + userId + '/bankaccounts', params, callback);
     },
 
     /**
      * Fetches all cards of the user
      * @param userId
+     * @param params
      * @param callback
      */
-    cards: function (userId, callback) {
+    cards: function (userId, params, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/cards', callback);
+        MangoPayClient.get('/users/' + userId + '/cards', params, callback);
     },
 
     /**
@@ -52,13 +54,14 @@ MangoPaySDK.user = {
     /**
      * Fetches all documents of the user
      * @param userId
+     * @param params
      * @param callback
      */
-    documents: function (userId, callback) {
+    documents: function (userId, params, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/KYC/documents', callback);
+        MangoPayClient.get('/users/' + userId + '/KYC/documents', params, callback);
     },
 
     /**
@@ -70,27 +73,29 @@ MangoPaySDK.user = {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId, callback);
+        MangoPayClient.get('/users/' + userId, null, callback);
     },
 
     /**
      * Fetches all users
+     * @param params
      * @param callback
      */
-    list: function (callback) {
-        MangoPayClient.get('/users', callback);
+    list: function (params, callback) {
+        MangoPayClient.get('/users', params, callback);
     },
 
     /**
      * Fetches all transactions of the user
      * @param userId
+     * @param params
      * @param callback
      */
-    transactions: function (userId, callback) {
+    transactions: function (userId, params, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/transactions', callback);
+        MangoPayClient.get('/users/' + userId + '/transactions', params, callback);
     },
 
     /**
@@ -128,13 +133,14 @@ MangoPaySDK.user = {
     /**
      * Fetches all wallets of the user
      * @param userId
+     * @param params
      * @param callback
      */
-    wallets: function (userId, callback) {
+    wallets: function (userId, params, callback) {
         if (typeof userId !== 'number' && typeof userId !== 'string') {
             throw new Error('userId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/wallets', callback);
+        MangoPayClient.get('/users/' + userId + '/wallets', params, callback);
     },
 
     /**

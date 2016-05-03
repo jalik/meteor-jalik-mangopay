@@ -46,7 +46,7 @@ MangoPaySDK.bank = {
         if (typeof bankAccountId !== 'number' && typeof bankAccountId !== 'string') {
             throw new Error('bankAccountId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/bankaccounts/' + bankAccountId, callback);
+        MangoPayClient.get('/users/' + userId + '/bankaccounts/' + bankAccountId, null, callback);
     },
 
     /**

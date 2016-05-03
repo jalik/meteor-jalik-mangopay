@@ -32,7 +32,7 @@ MangoPaySDK.payout = {
         if (typeof payoutId !== 'number' && typeof payoutId !== 'string') {
             throw new Error('payoutId is not valid');
         }
-        MangoPayClient.get('/payouts/' + payoutId, callback);
+        MangoPayClient.get('/payouts/' + payoutId, null, callback);
     },
 
     /**

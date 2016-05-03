@@ -1,6 +1,6 @@
 Package.describe({
     name: 'jalik:mangopay',
-    version: '0.2.4',
+    version: '0.2.5',
     author: 'karl.stein.pro@gmail.com',
     summary: 'MangoPay REST SDK',
     homepage: 'https://github.com/jalik/jalik-mangopay',
@@ -20,6 +20,7 @@ Package.onUse(function (api) {
     api.addFiles('mangopay-client.js');
     api.addFiles('api/bank.js');
     api.addFiles('api/card.js');
+    api.addFiles('api/card_registration.js');
     api.addFiles('api/document.js');
     api.addFiles('api/event.js');
     api.addFiles('api/hook.js');

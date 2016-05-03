@@ -29,7 +29,7 @@ MangoPaySDK.preAuthorization = {
         if (typeof preAuthId !== 'number' && typeof preAuthId !== 'string') {
             throw new Error('preAuthId is not valid');
         }
-        MangoPayClient.get('/preauthorizations/' + preAuthId, callback);
+        MangoPayClient.get('/preauthorizations/' + preAuthId, null, callback);
     },
 
     /**

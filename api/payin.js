@@ -53,7 +53,7 @@ MangoPaySDK.payin = {
         if (typeof payinId !== 'number' && typeof payinId !== 'string') {
             throw new Error('payinId is not valid');
         }
-        MangoPayClient.get('/payins/' + payinId, callback);
+        MangoPayClient.get('/payins/' + payinId, null, callback);
     },
 
     /**

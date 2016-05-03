@@ -42,7 +42,7 @@ MangoPaySDK.document = {
         if (typeof documentId !== 'number' && typeof documentId !== 'string') {
             throw new Error('documentId is not valid');
         }
-        MangoPayClient.get('/users/' + userId + '/KYC/documents/' + documentId, callback);
+        MangoPayClient.get('/users/' + userId + '/KYC/documents/' + documentId, null, callback);
     },
 
     /**
