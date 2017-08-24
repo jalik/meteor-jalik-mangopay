@@ -2,7 +2,7 @@
 
 This package is not official, it's a personal work but you can use it freely.
 
-**This is currently a WORK IN PROGRESS, so expect it to contain bugs and lack features**. 
+**This project is deprecated since the official SDK for NodeJS has been released by MangoPay, please use the official [MangoPay NodeJS SDK](https://github.com/Mangopay/mangopay2-nodejs-sdk)** to have the latest features and security fixes. 
 
 ### Installation
 
